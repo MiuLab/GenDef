@@ -74,25 +74,25 @@ $ python3 main.py --test --model_type ELMo --emb1_dim 1024 --n_feats 3 --test_ct
 $ python3 main.py --test --model_type baseline --emb1_dim 812 --test_ctxVec YOUR_PATH --visualize
 ```
 
-##### Test Online
+#### Test Online
 
 ```bash
 $ python3 online_inference.py --auto --model_type [baseline, ELMo, BERT_base, BERT_large]
 ```
 
-##### Sort the result
+#### Sort the result
 
 ```bash
 $ python3 sort_result.py logs/YOUR_FILENAME.txt
 ```
 
-##### Get Average Scores
+#### Get Average Scores
 
 ```bash
 $ python3 avg_score.py logs/YOUR_FILENAME.txt
 ```
 
-##### Get BLEU/ ROUGE Scores
+#### Get BLEU/ ROUGE Scores
 
 ```bash
 $ python3 get_bleu_rouge.py logs/YOUR_FILENAME.txt
