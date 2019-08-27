@@ -9,7 +9,7 @@ This repository contains the official PyTorch implementation of the following pa
 > Demo website: http://140.112.29.233:5000
 >
 > **Abstract:** *Contextualized word embeddings have boosted many NLP tasks compared with classic word embeddings. 
-However, the word with a speciﬁc sense may have differentcontextualized embeddings due to its various contexts. 
+However, the word with a speciﬁc sense may have different contextualized embeddings due to its various contexts. 
 To further investigate what contextualized word embeddings capture, this paper analyzes whether they can indicate the
 corresponding sense deﬁnitions and proposes a general framework that is capable of explaining word meanings given contextualized
 word embeddings for better interpretation. The experiments show that both ELMo and BERT embeddings can be well interpreted
