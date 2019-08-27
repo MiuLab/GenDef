@@ -52,7 +52,7 @@ $ python3 main.py --model_type baseline --emb1_dim 812 --train_ctxVec YOUR_PATH 
 
 ### Evaluation
 
-###3 Test and view the mapping result
+#### Test and view the mapping result
 
 ###### BERT-base
 ```bash
