@@ -15,12 +15,86 @@ corresponding sense deﬁnitions and proposes a general framework that is capabl
 word embeddings for better interpretation. The experiments show that both ELMo and BERT embeddings can be well interpreted
 via a readable textual form, and the ﬁndings may beneﬁt the research community for better understanding what the embeddings capture.*
 
-### Training
+### Before Training
+###### Encode the Definitions
+https://tfhub.dev/google/universal-sentence-encoder-large/3
+
+###### Extract Features from BERT
+https://pypi.org/project/pytorch-pretrained-bert/
+
+###### Extract Features from ELMo
+https://github.com/allenai/allennlp/blob/master/tutorials/how_to/elmo.md
+
+###### Get Pretrained Static Word Embedding
+https://fasttext.cc/docs/en/english-vectors.html
+
+### Train
+
+###### BERT-base
 ```bash
-$ bash run.sh
+$ python3 main.py --model_type BERT_base --emb1_dim 768 --train_ctxVec YOUR_PATH --val_ctxVec YOUR_PATH
+```
+
+###### BERT-large
+```bash
+$ python3 main.py --model_type BERT_large --emb1_dim 1024 --train_ctxVec YOUR_PATH --val_ctxVec YOUR_PATH
+```
+
+###### ELMo
+```bash
+$ python3 main.py --model_type ELMo --emb1_dim 1024 --n_feats 3 --train_ctxVec YOUR_PATH --val_ctxVec YOUR_PATH
+```
+
+###### Baseline
+```bash
+$ python3 main.py --model_type baseline --emb1_dim 812 --train_ctxVec YOUR_PATH --val_ctxVec YOUR_PATH
 ```
 
 ### Evaluation
+
+###3 Test and view the mapping result
+
+###### BERT-base
 ```bash
-$ bash eval.sh
+$ python3 main.py --test --model_type BERT_base --emb1_dim 768 --test_ctxVec YOUR_PATH --visualize
 ```
+
+###### BERT-large
+```bash
+$ python3 main.py --test --model_type BERT_large --emb1_dim 1024 --test_ctxVec YOUR_PATH --visualize
+```
+
+###### ELMo
+```bash
+$ python3 main.py --test --model_type ELMo --emb1_dim 1024 --n_feats 3 --test_ctxVec YOUR_PATH --visualize
+```
+
+###### Baseline
+```bash
+$ python3 main.py --test --model_type baseline --emb1_dim 812 --test_ctxVec YOUR_PATH --visualize
+```
+
+##### Test Online
+
+```bash
+$ python3 online_inference.py --auto --model_type [baseline, ELMo, BERT_base, BERT_large]
+```
+
+##### Sort the result
+
+```bash
+$ python3 sort_result.py logs/YOUR_FILENAME.txt
+```
+
+##### Get Average Scores
+
+```bash
+$ python3 avg_score.py logs/YOUR_FILENAME.txt
+```
+
+##### Get BLEU/ ROUGE Scores
+
+```bash
+$ python3 get_bleu_rouge.py logs/YOUR_FILENAME.txt
+```
+
