@@ -4,7 +4,8 @@
 
 This repository contains the official PyTorch implementation of the following paper:
 
-> **What Does This Word Mean? Explaining Contextualized Embeddings with Natural Language Deﬁnition**<br>
+> **"What Does This Word Mean? Explaining Contextualized Embeddings with Natural Language Deﬁnition"**, EMNLP-IJCNLP 2019
+<br>
 > Ting-Yun Chang, Yun-Nung Chen<br>
 > Demo website: http://140.112.29.233:5000
 >
