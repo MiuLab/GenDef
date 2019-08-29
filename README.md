@@ -1,4 +1,4 @@
-## Bert2Def; PyTorch Implementation
+## GenDef; PyTorch Implementation
 ![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg?style=plastic)
 ![PyTorch 1.1.0](https://img.shields.io/badge/pytorch-1.1.0-green.svg?style=plastic)
 
