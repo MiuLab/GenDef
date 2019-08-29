@@ -7,6 +7,8 @@ This repository contains the official PyTorch implementation of the following pa
 > **"What Does This Word Mean? Explaining Contextualized Embeddings with Natural Language Deﬁnition", EMNLP-IJCNLP 2019**<br>
 > Ting-Yun Chang, Yun-Nung Chen<br>
 > Demo website: http://140.112.29.233:5000
+
+> Download Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
 >
 > **Abstract:** *Contextualized word embeddings have boosted many NLP tasks compared with classic word embeddings. 
 However, the word with a speciﬁc sense may have different contextualized embeddings due to its various contexts. 
