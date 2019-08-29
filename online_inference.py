@@ -263,7 +263,7 @@ def inference(params):
             ctx_emb = np.zeros((params.n_feats, 3, params.emb1_dim))
             for j, ly_id in enumerate(reversed(range(-params.n_feats, 0))):  # -1, -2, -3 ...
                 layer_output = all_encoder_layers[ly_id].detach().cpu().numpy().astype(np.float64).squeeze()
-                ctx_emb[j] = np.round(layer_output[key_ids], 6).tolist() # (3, 768/1024)
+                ctx_emb[j, :len(key_ids)] = np.round(layer_output[key_ids], 6).tolist() # (3, 768/1024)
 
             ctx_emb = np.transpose(ctx_emb, (0,2,1)) # (n_feats, 768/1024, 3)  
             answer(mapping, all_def_embs, id2def, ctx_emb, w_id)                

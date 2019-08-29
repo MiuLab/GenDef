@@ -19,4 +19,4 @@ for i in range(0, len(lines), 16):
 BLEUscore = bleu_score.corpus_bleu([[r.split()] for r in references], [my.split() for my in myAnswers])
 
 Rougescore = rouge.get_scores(myAnswers, references, avg=True)
-print('[Max 100] BLEU: {:.1f}, ROUGE-L:F1 {:.1f}\n'.format(100*BLEUscore, 100*Rougescore['rouge-l']['f']))
+print('[Max 100] BLEU: {:.1f}, ROUGE-L:F {:.1f}\n'.format(100*BLEUscore, 100*Rougescore['rouge-l']['f']))
