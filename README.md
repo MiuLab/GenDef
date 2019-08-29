@@ -7,16 +7,16 @@ This repository contains the official PyTorch implementation of the following pa
 > **"What Does This Word Mean? Explaining Contextualized Embeddings with Natural Language Deﬁnition", EMNLP-IJCNLP 2019**<br>
 > Ting-Yun Chang, Yun-Nung Chen<br>
 >
-> Demo website: http://140.112.29.233:5000
->
-> Download the Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
->
 > **Abstract:** *Contextualized word embeddings have boosted many NLP tasks compared with classic word embeddings. 
 However, the word with a speciﬁc sense may have different contextualized embeddings due to its various contexts. 
 To further investigate what contextualized word embeddings capture, this paper analyzes whether they can indicate the
 corresponding sense deﬁnitions and proposes a general framework that is capable of explaining word meanings given contextualized
 word embeddings for better interpretation. The experiments show that both ELMo and BERT embeddings can be well interpreted
 via a readable textual form, and the ﬁndings may beneﬁt the research community for better understanding what the embeddings capture.*
+>
+> Demo website: http://140.112.29.233:5000
+>
+> Download the Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
 
 ### Before Training
 ###### Encode the Definitions
