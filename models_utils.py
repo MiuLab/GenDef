@@ -11,25 +11,6 @@ torch.manual_seed(999)
 if use_cuda:
     torch.cuda.manual_seed_all(999)
 
-'''
-def normalize_embeddings(emb, types, mean=None):
-    """
-    Normalize embeddings by their norms / recenter them.
-    """
-    for t in types.split(','):
-        if t == '':
-            continue
-        if t == 'center':
-            if mean is None:
-                mean = emb.mean(0, keepdim=True)
-            emb.sub_(mean.expand_as(emb))
-        elif t == 'renorm':
-            emb.div_(emb.norm(2, 1, keepdim=True).expand_as(emb))
-        else:
-            raise Exception('Unknown normalization type: "%s"' % t)
-    return mean.cpu() if mean is not None else None
-'''
-
 
 def get_mapping_accuracy(mapping, src_loader, tgt_emb, eval_few=False):
     """
@@ -243,7 +224,7 @@ class Mapping_Base(torch.nn.Module):
         self.n_layers = params.n_layers
         self.freeze = params.freeze
         
-        self.embed = torch.nn.Embedding.from_pretrained(pretrain, freeze=self.freeze)            
+        self.embed = torch.nn.Embedding.from_pretrained(pretrain, freeze=self.freeze)
 
         layers = []
 #        self.bn = torch.nn.BatchNorm1d(self.out_dim)        
@@ -305,85 +286,4 @@ class Mapping_BERT(torch.nn.Module): # BERT-base, BERT-large, ELMo
         x = torch.cat((self.embed(w_id), x), dim=1)
         out = self.mlp(x)
         
-        return out
-
-
-class LinearBlock2(torch.nn.Module):
-    def __init__(self, dim1, dim2):
-        super(LinearBlock2, self).__init__()
-        self.activ = torch.nn.ReLU(inplace=True)
-        self.fc = torch.nn.Linear(dim1, dim2)
-        self.bn = ConditionalBatchNorm1d(dim2)
-
-    def forward(self, x):
-        out = self.activ(x)
-        out = self.fc(out)
-        out = self.bn(out)
-        return out
-
-
-class TransBlock(torch.nn.Module):
-    def __init__(self, in_dim, out_dim):
-        super(TransBlock, self).__init__()
-        self.fc1 = torch.nn.Linear(in_dim, out_dim)
-#        self.activ = torch.nn.ReLU(inplace=True)
-#        self.fc2 = torch.nn.Linear(out_dim, out_dim)
-
-    def forward(self, x):
-        out = self.fc1(x)
-#        out = self.activ(out)
-#        out = self.fc2(out)
-        return out
-        
-
-class Mapping2(torch.nn.Module):
-    def __init__(self, params):
-        super(Mapping2, self).__init__()
-        self.in_dim = params.emb1_dim
-        self.out_dim = params.emb2_dim
-        self.n_layers = params.n_layers
-
-        pretrain = torch.tensor(load.get_voc().embedding)
-        self.embed = torch.nn.Embedding.from_pretrained(pretrain, freeze=False)            
-
-        self.layers = []
-        self.affine_generators = []
-        self.layers.append(torch.nn.Linear(self.in_dim, self.out_dim))
-        for _ in range(self.n_layers):
-            self.layers.append(LinearBlock2(self.out_dim, self.out_dim))
-            self.affine_generators.append(TransBlock(self.out_dim, self.out_dim*2))
-        self.MapModels = torch.nn.Sequential(*self.layers)
-        self.ConModels = torch.nn.Sequential(*self.affine_generators)
-        
-
-    def forward(self, x, w_id): 
-        out = self.layers[0](torch.cat((self.embed(w_id), x), dim=1))
-
-        for i in range(1, self.n_layers+1):
-            cBN_params = self.affine_generators[i-1](x)
-            self.assign_adain_params(cBN_params, self.layers[i])
-            out = self.layers[i](out)
-        
-        return out
-
-
-    def assign_adain_params(self, cBN_params, model):
-        for m in model.modules():
-            if m.__class__.__name__ == "ConditionalBatchNorm1d":
-                m.weight = cBN_params[:, :m.num_features]
-                m.bias = cBN_params[:, m.num_features:2*m.num_features]
-
-
-class ConditionalBatchNorm1d(torch.nn.Module):
-    def __init__(self, num_features):
-        super(ConditionalBatchNorm1d, self).__init__()
-        self.num_features = num_features
-        # weight and bias are dynamically assigned
-        self.cbn = torch.nn.BatchNorm1d(num_features, affine=False)
-        self.weight = None
-        self.bias = None
-        
-    def forward(self, x):
-        assert self.weight is not None and self.bias is not None, "Please assign weight and bias before calling ConditionalBatchNorm1d!"
-        out = self.weight * self.cbn(x) + self.bias
         return out
