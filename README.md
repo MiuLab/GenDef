@@ -17,6 +17,8 @@ via a readable textual form, and the ﬁndings may beneﬁt the research communi
 > Demo website: http://140.112.29.233:5000
 >
 > Download the Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
+>
+> Dataset: https://miulab.myDS.me:5001/sharing/lWPBRc8hG
 
 ### Before Training
 ###### Encode the Definitions
