@@ -14,7 +14,7 @@ corresponding sense deﬁnitions and proposes a general framework that is capabl
 word embeddings for better interpretation. The experiments show that both ELMo and BERT embeddings can be well interpreted
 via a readable textual form, and the ﬁndings may beneﬁt the research community for better understanding what the embeddings capture.*
 >
-> Demo website: http://140.112.29.233:5000
+> Demo website: http://140.112.29.239:5000/
 >
 > Download the Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
 >
