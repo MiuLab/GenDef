@@ -18,7 +18,9 @@ via a readable textual form, and the ﬁndings may beneﬁt the research communi
 >
 > Download the Pre-trained Network: https://miulab.myDS.me:5001/sharing/nkV8UPN2s
 >
-
+> Paper: https://www.aclweb.org/anthology/D19-1627.pdf
+> 
+> Long Version: https://www.airitilibrary.com/Publication/alDetailedMesh1?DocID=U0001-1902202000330000
 
 ### Before Training
 ###### Encode the Definitions
